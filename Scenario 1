@@ -1,0 +1,34 @@
+Scenario: Disk Usage Issue on a Server
+
+Question: A server is running out of disk space on the / partition. How would you troubleshoot and resolve this issue?
+
+Answer:
+
+	1.	Check Disk Usage:
+Run df -h to see which partitions are consuming disk space.
+
+df -h
+
+	2.	Find Large Files:
+Use du to locate large files and directories consuming space.
+
+du -sh /* | sort -rh | head -10
+
+
+	3.	Check Logs:
+The /var/log directory often contains large logs. Investigate any unusually large log files.
+
+du -sh /var/log/*
+
+
+	4.	Clear Unnecessary Files:
+	•	Clean package caches:
+
+sudo apt-get clean  # for Debian/Ubuntu
+sudo yum clean all  # for CentOS/RHEL
+
+
+	•	Delete unnecessary log files or compress old logs.
+	•	Remove orphaned packages and unnecessary dependencies.
+
+Explanation: The key is identifying large files or directories consuming space and cleaning unnecessary data. Logs, cache files, and backup files are common culprits.
